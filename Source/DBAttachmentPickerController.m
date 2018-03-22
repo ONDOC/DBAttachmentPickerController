@@ -28,7 +28,7 @@
 
 const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaTypeImage | DBAttachmentMediaTypeVideo | DBAttachmentMediaTypeOther;
 
-@interface DBAttachmentPickerController () <UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DBAssetPickerControllerDelegate>
+@interface DBAttachmentPickerController () <UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DBAssetPickerControllerDelegate>
 
 @property (strong, nonatomic) UIViewController *initialViewController;
 @property (strong, nonatomic) DBAttachmentAlertController *alertController;
@@ -240,7 +240,7 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
     }
     
     @try {
-        UIDocumentMenuViewController *viewController = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:documentMediaTypes inMode:UIDocumentPickerModeImport];
+        UIDocumentPickerViewController *viewController = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:documentMediaTypes inMode:UIDocumentPickerModeImport];
         viewController.delegate = self;
         viewController.modalPresentationStyle = UIModalPresentationFullScreen;
         
@@ -297,17 +297,6 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
     [alertController addAction:actionCancel];
     [self.initialViewController presentViewController:alertController animated:YES completion:nil];
     self.extendedCancelBlock();
-}
-
-#pragma mark - UIDocumentMenuViewControllerDelegate
-
-- (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker {
-    documentPicker.delegate = self;
-    [self.initialViewController presentViewController:documentPicker animated:YES completion:nil];
-}
-
-- (void)documentMenuWasCancelled:(UIDocumentMenuViewController *)documentMenu {
-    [self cancelDidSelect];
 }
 
 #pragma mark - UIDocumentPickerViewControllerDelegate
