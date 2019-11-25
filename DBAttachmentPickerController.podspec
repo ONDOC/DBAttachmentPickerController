@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'DBAttachmentPickerController'
-  s.version      = '1.1.4'
+  s.version      = '1.1.5'
   s.authors = { 'Denis Bogatyrev' => 'denis.bogatyrev@gmail.com' }
   s.summary      = 'This powerful component allows to select different types of files from different sources on your device'
   s.homepage     = 'https://github.com/d0ping/DBAttachmentPickerController'
