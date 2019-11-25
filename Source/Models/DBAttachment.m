@@ -184,10 +184,12 @@
     switch (self.sourceType) {
         case DBAttachmentSourceTypePHAsset:
             if (completion) {
+                PHImageRequestOptions *option = [PHImageRequestOptions new];
+                option.synchronous = YES;
                 [[PHImageManager defaultManager] requestImageForAsset:self.photoAsset
                                                            targetSize:PHImageManagerMaximumSize
                                                           contentMode:PHImageContentModeDefault
-                                                              options:nil
+                                                              options:option
                                                         resultHandler:^(UIImage *result, NSDictionary *info) {
                                                             completion(result);
                                                         }];
